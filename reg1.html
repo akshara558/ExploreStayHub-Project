@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>STUDENT REGISTRATION FORM</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-image: url(https://i.pinimg.com/736x/8a/36/f1/8a36f1b33b436275a8424ab0d7c307da.jpg); /* Replace with the path to your image file */
+      background-size: cover;
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+  
+  </style>
+</head>
+
+<body>
+  <h1>Student Registration Form</h1>
+  <div class="con">
+    <form id="registrationForm" action="myphp.php" method="post" enctype="multipart/form-data">
+      <table align="center" cellpadding="10">
+        <tr>
+          <td>First Name</td>
+          <td><input type="text" name="FirstName" maxlength="50" placeholder="firstname" required/></td>
+          <td>Last Name</td>
+          <td><input type="text" name="LastName" maxlength="50" placeholder="lastname" /></td>
+        </tr>
+
+        <tr>
+          <td>Email Address</td>
+          <td><input type="email" id="email" name="EmailID" maxlength="100" placeholder="abcdefg@gmail.com" required/></td>
+          
+        </tr>
+        <tr>
+          <td>Gender</td>
+          <td>
+            <select name="Gender">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </td>
+          <td>Mobile No</td>
+          <td><input type="text" id="phone" name="MobileNumber" minlength="10" maxlength="10" placeholder="9102xxxxxx" required /></td>
+        </tr>
+        <tr>
+          <td>Add Your Image</td>
+          <td colspan="4"><input type="file" id="myFile" name="image">
+          </td>
+        </tr>
+        <tr>
+          <td>Address</td>
+          <td colspan="4"><textarea name="Address" cols="53" rows="5"></textarea></td>
+        </tr>
+        <tr>
+          
+          <td>State</td>
+          <td><input type="text" name="State" maxlength="50" placeholder="Kerala" /></td>
+        </tr>
+        <tr>
+          <td>Country</td>
+          <td><input type="text" name="Country" placeholder="India" /></td>
+   
+        </tr>
+
+        <tr>
+          <td></td>
+          <td colspan="4"><input type="submit" value="Submit" class="submit"></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+
+  <script>
+    
+  const emailInput = document.getElementById('email');
+  const phoneInput = document.getElementById('phone');
+  const submitButton = document.querySelector('.submit');
+
+  function validateEmail(email) {
+    const regex = /^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return regex.test(email);
+  }
+
+  function validatePhone(phone) {
+    const regex = /^[0-9]{10}$/;
+    return regex.test(phone);
+  }
+
+  function updateSubmitButton() {
+    const isValidEmail = validateEmail(emailInput.value);
+    const isValidPhone = validatePhone(phoneInput.value);
+    
+    if (isValidEmail && isValidPhone) {
+      submitButton.removeAttribute('disabled');
+    } else {
+      submitButton.setAttribute('disabled', true);
+    }
+  }
+
+  emailInput.addEventListener('keyup', () => {
+    if (!validateEmail(emailInput.value)) {
+      emailInput.classList.add('error');
+    } else {
+      emailInput.classList.remove('error');
+    }
+    updateSubmitButton();
+  });
+
+  phoneInput.addEventListener('keyup', () => {
+    if (!validatePhone(phoneInput.value)) {
+      phoneInput.classList.add('error');
+    } else {
+      phoneInput.classList.remove('error');
+    }
+    updateSubmitButton();
+  });
+
+
+  </script>
+</body>
+</html>
